@@ -30,3 +30,4 @@
 
 # Clion
 .idea/*
+.DS_Store
