@@ -6,15 +6,20 @@
 #ifndef COKE_FSM_H
 #define COKE_FSM_H
 
+#include <unordered_map>
+
 namespace coke {
     namespace tokenizer {
+        template<class S>
         class FSM {
-            State state;
+            S currentState;
+            std::unordered_map<State, std::function<void>> stateFunctions;
+
+            void when(S state, std::function &func);
         };
 
         enum class State {
             begin,
-
             end,
         };
     }
