@@ -8,9 +8,9 @@ namespace coke {
     namespace tokenizer {
 
         template<class S>
-        void FSM::when(S state, std::function &func) {
+        void FSM::when(S state, funcPointer &func) {
             stateFunctions.insert({state, func});
+            State start = State::begin;
         }
-
     }
 }

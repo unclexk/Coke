@@ -10,12 +10,14 @@
 
 namespace coke {
     namespace tokenizer {
+        typedef void(*funcPointer)(void);
+
         template<class S>
         class FSM {
             S currentState;
-            std::unordered_map<State, std::function<void>> stateFunctions;
+            std::unordered_map<State, funcPointer> stateFunctions;
 
-            void when(S state, std::function &func);
+            void when(S state, funcPointer &func);
         };
 
         enum class State {
