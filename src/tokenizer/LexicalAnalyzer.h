@@ -8,24 +8,22 @@
 #include <string>
 
 namespace coke {
-    namespace tokenizer {
-        enum class TokenType {
-            integer,// 整数
-            add,// +
-            sub,// -
-            mul,// *
-            div,// /
-            unknown,
-        };
+    enum class TokenType {
+        integer,// 整数
+        add,// +
+        sub,// -
+        mul,// *
+        div,// /
+        unknown,
+    };
 
-        class Token {
-            TokenType tokenType = TokenType::unknown;
-            int row = -1;
-            int column = -1;
-            std::string value;
-        };
+    class Token {
+        TokenType tokenType = TokenType::unknown;
+        int row = -1;
+        int column = -1;
+        std::string value;
+    };
 
-    }
 }
 
 

@@ -7,24 +7,36 @@
 #define COKE_FSM_H
 
 #include <unordered_map>
+#include "LexicalAnalyzer.h"
 
 namespace coke {
-    namespace tokenizer {
-        typedef void(*funcPointer)(void);
+    class TranslationResult {
+        bool success;
+        Token token;
+    };
 
-        template<class S>
-        class FSM {
-            S currentState;
-            std::unordered_map<State, funcPointer> stateFunctions;
+    class State {
+    public:
+        const static int begin = 0;
+        const static int end = 1;
+    };
 
-            void when(S state, funcPointer &func);
-        };
+    typedef TranslationResult(*funcPointer)(char &c);
 
-        enum class State {
-            begin,
-            end,
-        };
-    }
+    class FSM {
+    private:
+        int currentState;
+        std::unordered_map<int, funcPointer> stateFunctions;
+    public:
+        void when(int state, funcPointer func);
+
+        TranslationResult input(char &c);
+
+        void translateTo(int to);
+
+        void initFSM();
+    };
+
 }
 
 #endif //COKE_FSM_H
